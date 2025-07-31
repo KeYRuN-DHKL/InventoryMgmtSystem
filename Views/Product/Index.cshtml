@@ -1,0 +1,47 @@
+@model System.Collections.Generic.List<InventoryMgmtSystem.Entity.Product>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+} 
+
+<h2>Products</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Product</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Unit</th>
+        <th>Is Active</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.Name</td>
+            <td>@product.Description</td>
+            <td>@product.Unit?.FullName</td>
+            @if (product.IsActive)
+            {
+                <span class="badge bg-success">Active</span>
+            }
+            else
+            {
+                <span class="badge bg-danger">Inactive</span>
+            }
+            <td>
+                <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-sm btn-warning">Edit</a>
+                <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-sm btn-danger"
+                   onclick="return">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

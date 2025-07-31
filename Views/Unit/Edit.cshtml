@@ -1,0 +1,19 @@
+@model UnitEditVm
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Inventory List</h2>
+<form method="post">
+    <label asp-for="FullName">FullName</label><br/>
+    <input asp-for="FullName" type="text"/><br/>
+    <label asp-for="ShortName">ShortName</label><br/>
+    <input asp-for="ShortName" type="text"/><br/>
+    <label asp-for="Description">Description</label><br/>
+    <input asp-for="Description" type="text"/><br/>
+    <label asp-for="IsActive">Active</label>
+    <input type="checkbox" asp-for="IsActive"/>
+    <button type="submit">Submit</button>
+</form>

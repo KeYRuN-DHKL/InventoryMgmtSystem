@@ -1,0 +1,52 @@
+@model System.Collections.Generic.List<InventoryMgmtSystem.Entity.Category>
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "_Layout";
+}
+
+<h2>Categories</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Category</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Is Active</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var data in Model)
+    {
+        <tr>
+            <td>@data.Name</td>
+            <td>@data.Quantity</td>
+            <td>@data.Price</td>
+            <td>@data.Description</td>
+            <td>
+                @if (data.IsActive)
+                {
+                    <span class="badge bg-success">Active</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Inactive</span>
+                }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@data.Id" class="btn btn-primary">Edit</a>
+                <a asp-action="Delete" asp-route-id="@data.Id" class="btn btn-danger">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

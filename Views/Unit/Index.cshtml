@@ -1,0 +1,46 @@
+@model System.Collections.Generic.List<InventoryMgmtSystem.Entity.Unit>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2 class="mt-4 mb-4">Units List</h2>
+<div class="d-flex justify-content-end mb-3">
+    <a asp-action="Create" class="btn btn-primary">+ Add Unit</a>
+</div>
+<table class="table table-striped table-bordered align-middle">
+    <thead class="table-dark">
+    <tr>
+        <th>Full Name</th>
+        <th>Short Name</th>
+        <th>Unit Description</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.FullName</td>
+            <td>@item.ShortName</td>
+            <td>@item.Description</td>
+            <td>
+                @if (item.IsActive)
+                {
+                    <span class="badge bg-success">Active</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Inactive</span>
+                }
+            </td>
+            <td>
+                <a  asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a  asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
