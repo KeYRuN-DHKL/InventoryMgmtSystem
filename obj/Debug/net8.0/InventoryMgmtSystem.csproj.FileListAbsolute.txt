@@ -430,3 +430,4 @@ C:\Users\LOQ\RiderProjects\InventoryMgmtSystem\InventoryMgmtSystem\obj\Debug\net
 C:\Users\LOQ\RiderProjects\InventoryMgmtSystem\InventoryMgmtSystem\obj\Debug\net8.0\InventoryMgmtSystem.pdb
 C:\Users\LOQ\RiderProjects\InventoryMgmtSystem\InventoryMgmtSystem\obj\Debug\net8.0\InventoryMgmtSystem.genruntimeconfig.cache
 C:\Users\LOQ\RiderProjects\InventoryMgmtSystem\InventoryMgmtSystem\obj\Debug\net8.0\ref\InventoryMgmtSystem.dll
+C:\Users\LOQ\RiderProjects\InventoryMgmtSystem\InventoryMgmtSystem\obj\Debug\net8.0\InventoryMgmtSystem.sourcelink.json

@@ -70,7 +70,7 @@ public class CategoryController:Controller
                 Quantity = category.Quantity,
                 Price = category.Price,
                 Description = category.Description,
-                IsActive = true
+                IsActive = category.IsActive
             };
             return View(vm);
         }
@@ -99,6 +99,7 @@ public class CategoryController:Controller
             category.Quantity = vm.Quantity;
             category.Price = vm.Price;
             category.Description = vm.Description;
+            category.IsActive = vm.IsActive;
             _context.Categories.Update(category);
             await _context.SaveChangesAsync();
             _toastNotification.AddSuccessToastMessage("Category Updated Successfully");
@@ -107,7 +108,7 @@ public class CategoryController:Controller
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return View(vm);
         }
     }
 

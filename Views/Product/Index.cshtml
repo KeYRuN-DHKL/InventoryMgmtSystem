@@ -27,7 +27,8 @@
         <tr>
             <td>@product.Name</td>
             <td>@product.Description</td>
-            <td>@product.Unit?.FullName</td>
+            <td>@product.Unit?.ShortName</td>
+            <td>
             @if (product.IsActive)
             {
                 <span class="badge bg-success">Active</span>
@@ -36,6 +37,7 @@
             {
                 <span class="badge bg-danger">Inactive</span>
             }
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-sm btn-warning">Edit</a>
                 <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-sm btn-danger"

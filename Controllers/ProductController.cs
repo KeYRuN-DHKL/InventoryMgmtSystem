@@ -25,9 +25,16 @@ namespace InventoryMgmtSystem.Controllers
             return View(products);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var units = await _context.Units.Select(U => new SelectListItem
+            {
+                Value = U.Id.ToString(),
+                Text = U.ShortName,
+            }).ToListAsync();
+            var vm = new ProductVm();
+            vm.Units = units;
+            return View(vm);
         }
 
         [HttpPost]
@@ -69,12 +76,19 @@ namespace InventoryMgmtSystem.Controllers
                     return RedirectToAction("Index");
                 }
 
+                var units = await _context.Units.Select(U => new SelectListItem
+                {
+                    Value = U.Id.ToString(),
+                    Text = U.ShortName,
+                }).ToListAsync();
+                
                 var vm = new ProductEditVm
                 {
                     Id = product.Id,
                     Name = product.Name,
                     Description = product.Description,
                     IsActive = product.IsActive,
+                    Units = units,
                     UnitId = product.UnitId
                 };
                 return View(vm);
