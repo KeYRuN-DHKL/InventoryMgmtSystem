@@ -1,6 +1,7 @@
+using InventoryMgmtSystem.Models;
 namespace InventoryMgmtSystem.Repository.Interface;
 
-public class ICategoryRepository
+public interface ICategoryRepository
 {
-    
+    Task<List<CategoryVm>> GetAllAsync();
 }

@@ -14,17 +14,6 @@ public class CategoryService : ICategoryService
     {
         _context = context;
     }
-
-    public async Task<List<CategoryVm>> GetAllAsync()
-    {
-        return await _context.Categories
-            .Select(c => new CategoryVm
-            {
-                Name = c.Name,
-                Description = c.Description,
-                IsActive = c.IsActive
-            }).ToListAsync();
-    }
     
     public async Task<bool> CreateAsync(CategoryVm vm)
     {

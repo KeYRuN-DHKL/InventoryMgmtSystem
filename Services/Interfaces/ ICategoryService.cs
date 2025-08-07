@@ -4,7 +4,6 @@ namespace InventoryMgmtSystem.services.Interfaces;
 
 public interface ICategoryService
 {
-    Task<List<CategoryVm>> GetAllAsync();
     Task<bool> CreateAsync(CategoryVm vm);
     Task<bool> UpdateAsync(CategoryEditVm vm);
     Task<bool> DeleteAsync(Guid id);

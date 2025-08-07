@@ -1,4 +1,5 @@
 using InventoryMgmtSystem.Models;
+using InventoryMgmtSystem.Repository.Interface;
 using InventoryMgmtSystem.services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
@@ -9,16 +10,18 @@ public class CategoryController : Controller
 {
     private readonly ICategoryService _categoryService;
     private readonly IToastNotification _toastNotification;
+    private readonly ICategoryRepository _categoryRepository;
 
-    public CategoryController(ICategoryService categoryService, IToastNotification toastNotification)
+    public CategoryController(ICategoryService categoryService, IToastNotification toastNotification,ICategoryRepository categoryrepository)
     {
         _categoryService = categoryService;
         _toastNotification = toastNotification;
+        _categoryRepository = categoryrepository;
     }
 
     public async Task<IActionResult> Index()
     {
-        var categories = await _categoryService.GetAllAsync();
+        var categories = await _categoryRepository.GetAllAsync();
         return View(categories);
     }
 
