@@ -1,4 +1,6 @@
 using InventoryMgmtSystem.Data;
+using InventoryMgmtSystem.Services;
+using InventoryMgmtSystem.services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 
@@ -15,6 +17,7 @@ builder.Services.AddControllersWithViews()
     });
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
     option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 
@@ -35,6 +38,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Product}/{action=Index}/{id?}");
+    pattern: "{controller=Category}/{action=Index}/{id?}");
 
 app.Run();

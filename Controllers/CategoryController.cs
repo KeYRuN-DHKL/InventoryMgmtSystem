@@ -1,138 +1,73 @@
-using InventoryMgmtSystem.Data;
-using InventoryMgmtSystem.Entity;
 using InventoryMgmtSystem.Models;
+using InventoryMgmtSystem.services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 
 namespace InventoryMgmtSystem.Controllers;
 
-public class CategoryController:Controller
+public class CategoryController : Controller
 {
-     private readonly ApplicationDbContext _context;
+    private readonly ICategoryService _categoryService;
     private readonly IToastNotification _toastNotification;
 
-    public CategoryController(ApplicationDbContext context, IToastNotification toastNotification)
+    public CategoryController(ICategoryService categoryService, IToastNotification toastNotification)
     {
-        _context = context;
+        _categoryService = categoryService;
         _toastNotification = toastNotification;
     }
 
     public async Task<IActionResult> Index()
     {
-        var categories = await _context.Categories.ToListAsync();
+        var categories = await _categoryService.GetAllAsync();
         return View(categories);
     }
 
-    public IActionResult Create()
-    {
-        return View();
-    }
+    public IActionResult Create() => View();
 
     [HttpPost]
     public async Task<IActionResult> Create(CategoryVm vm)
     {
-        try
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(vm);
-            }
+        if (!ModelState.IsValid)
+            return View(vm);
 
-            var category = new Category
-            {
-                Id = Guid.NewGuid(),
-                Name = vm.Name,
-                Quantity = vm.Quantity,
-                Price = vm.Price,
-                Description = vm.Description
-            };
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
+        var success = await _categoryService.CreateAsync(vm);
+        if (success)
+        {
+            _toastNotification.AddSuccessToastMessage("Category created successfully.");
             return RedirectToAction("Index");
         }
-        catch (Exception e)
-        {
-            ModelState.AddModelError("", "An error occurred while creating the category: " + e.Message);
-            return View(vm);
-        }
-    }
 
-    public async Task<IActionResult> Edit(Guid id)
-    {
-        try
-        {
-            var category = await _context.Categories.FindAsync(id);
-            var vm = new CategortyEditvm
-            {
-                Id = category.Id,
-                Name = category.Name,
-                Quantity = category.Quantity,
-                Price = category.Price,
-                Description = category.Description,
-                IsActive = category.IsActive
-            };
-            return View(vm);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+        ModelState.AddModelError("", "Error occurred while creating category.");
+        return View(vm);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Edit(CategortyEditvm vm)
+    public async Task<IActionResult> Edit(CategoryEditVm vm)
     {
-        try
-        {
-            if (!ModelState.IsValid) return View(vm);
+        if (!ModelState.IsValid)
+            return View(vm);
 
-            var category = await _context.Categories.FindAsync(vm.Id);
-            if (category == null)
-            {
-                _toastNotification.AddAlertToastMessage("Category Not Found");
-                return RedirectToAction("Index");
-            }
-
-            category.Name = vm.Name;
-            category.Quantity = vm.Quantity;
-            category.Price = vm.Price;
-            category.Description = vm.Description;
-            category.IsActive = vm.IsActive;
-            _context.Categories.Update(category);
-            await _context.SaveChangesAsync();
-            _toastNotification.AddSuccessToastMessage("Category Updated Successfully");
-            return RedirectToAction("Index");
-        }
-        catch (Exception e)
+        var success = await _categoryService.UpdateAsync(vm);
+        if (!success)
         {
-            Console.WriteLine(e);
+            _toastNotification.AddErrorToastMessage("Error updating category.");
             return View(vm);
         }
+
+        _toastNotification.AddSuccessToastMessage("Category updated successfully.");
+        return RedirectToAction("Index");
     }
 
     public async Task<IActionResult> Delete(Guid id)
     {
-        try
+        var success = await _categoryService.DeleteAsync(id);
+        if (!success)
         {
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
-            {
-                _toastNotification.AddErrorToastMessage("Category not found.");
-                return RedirectToAction("Index");
-            }
-
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
-
-            _toastNotification.AddSuccessToastMessage("Category deleted successfully.");
+            _toastNotification.AddErrorToastMessage("Error deleting category.");
             return RedirectToAction("Index");
         }
-        catch (Exception ex)
-        {
-            _toastNotification.AddErrorToastMessage("Error deleting category: " + ex.Message);
-            return RedirectToAction("Index");
-        }
+
+        _toastNotification.AddSuccessToastMessage("Category deleted successfully.");
+        return RedirectToAction("Index");
     }
 }
