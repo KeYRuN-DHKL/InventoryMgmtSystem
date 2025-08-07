@@ -9,4 +9,6 @@ public class ApplicationDbContext:DbContext
     public DbSet<Unit> Units { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<StakeHolder> StakeHolders { get; set; }
+
 }

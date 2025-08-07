@@ -1,6 +1,9 @@
 using InventoryMgmtSystem.Data;
+using InventoryMgmtSystem.Repository;
+using InventoryMgmtSystem.Repository.Interface;
 using InventoryMgmtSystem.Services;
 using InventoryMgmtSystem.services.Interfaces;
+using InventoryMgmtSystem.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 
@@ -18,6 +21,8 @@ builder.Services.AddControllersWithViews()
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
     option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IStakeHolderService, StakeHolderService>();
+builder.Services.AddScoped<IStakeHolderRepository, StakeHolderRepository>();
 
 var app = builder.Build();
 
@@ -38,6 +43,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Category}/{action=Index}/{id?}");
+    pattern: "{controller=StakeHolder}/{action=Index}/{id?}");
 
 app.Run();
