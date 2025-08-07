@@ -1,7 +1,6 @@
 using InventoryMgmtSystem.Dto;
 using InventoryMgmtSystem.Models;
 using InventoryMgmtSystem.Repository.Interface;
-using InventoryMgmtSystem.Services;
 using InventoryMgmtSystem.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
