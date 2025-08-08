@@ -21,7 +21,7 @@ public class UnitController : Controller
     public async Task<IActionResult> Index()
     {
         var units = await _context.Units.ToListAsync();
-        return View(units);
+        return View(units);  
     }
 
     public IActionResult Create()
