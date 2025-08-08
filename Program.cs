@@ -24,6 +24,7 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IStakeHolderService, StakeHolderService>();
 builder.Services.AddScoped<IStakeHolderRepository, StakeHolderRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 

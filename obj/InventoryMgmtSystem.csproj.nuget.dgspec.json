@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LOQ\\RiderProjects\\InventoryMgmtSystem\\InventoryMgmtSystem\\InventoryMgmtSystem.csproj": {}
+    "C:\\Users\\Bishal Shah\\RiderProjects\\InventoryMgmtSystem\\InventoryMgmtSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LOQ\\RiderProjects\\InventoryMgmtSystem\\InventoryMgmtSystem\\InventoryMgmtSystem.csproj": {
+    "C:\\Users\\Bishal Shah\\RiderProjects\\InventoryMgmtSystem\\InventoryMgmtSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LOQ\\RiderProjects\\InventoryMgmtSystem\\InventoryMgmtSystem\\InventoryMgmtSystem.csproj",
+        "projectUniqueName": "C:\\Users\\Bishal Shah\\RiderProjects\\InventoryMgmtSystem\\InventoryMgmtSystem.csproj",
         "projectName": "InventoryMgmtSystem",
-        "projectPath": "C:\\Users\\LOQ\\RiderProjects\\InventoryMgmtSystem\\InventoryMgmtSystem\\InventoryMgmtSystem.csproj",
-        "packagesPath": "C:\\Users\\LOQ\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LOQ\\RiderProjects\\InventoryMgmtSystem\\InventoryMgmtSystem\\obj\\",
+        "projectPath": "C:\\Users\\Bishal Shah\\RiderProjects\\InventoryMgmtSystem\\InventoryMgmtSystem.csproj",
+        "packagesPath": "C:\\Users\\Bishal Shah\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bishal Shah\\RiderProjects\\InventoryMgmtSystem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\LOQ\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Bishal Shah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -37,7 +39,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -77,6 +80,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.14, 8.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.14, 8.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.14, 8.0.14]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.14, 8.0.14]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -85,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.411/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

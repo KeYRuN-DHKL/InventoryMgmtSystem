@@ -10,5 +10,6 @@ public class StockMovement
     public MovementType Type { get; set; }
     public decimal Quantity { get; set; }
     public decimal Rate { get; set; }
+    public decimal VatPer { get; set; }
     public Stock Stock { get; set; }
 }

@@ -1,0 +1,101 @@
+﻿@model PurchaseVm
+
+@{
+    ViewBag.Title = "title";
+
+}
+<form>
+    <label>Create Purchase</label>
+    <div>
+        <div class="d-flex">
+            <label asp-for="InvoiceNo"></label>
+            <input type="text" asp-for="InvoiceNo" required/>
+        </div>
+        <div>
+            <label asp-for="StakeHolderId"> StakeHolder</label>
+            <select asp-for="StakeHolderId" asp-items="Model.StakeHolders" required>
+                <option value="">Select</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="Tdate">Date</label>
+            <input type="date" asp-for="Tdate"/>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th>
+                Product
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Rate
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Vat(%)
+            </th>
+            <th>
+                Vat Amount
+            </th>
+            <th>
+                Total
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <select asp-for="StockMovement[1].ProductId" asp-items="Model.Products" required>
+                    <option value="">Select</option>
+                </select>
+            </td>
+            <td>
+                <input type="number" asp-for="StockMovement[1].Quantity" min="0.1" required/>
+            </td>
+            <td>
+                <input type="number" asp-for="StockMovement[1].Rate" min="0" required/>
+            </td>
+            <td>
+                <input type="number" readonly/>
+            </td>
+            <td>
+                <input type="number" asp-for="StockMovement[1].VatPer" min="0" required/>
+            </td>
+            <td>
+                <input type="number" readonly/>
+            </td>
+            <td>
+                <input type="number" readonly/>
+            </td>
+            
+        </tr>
+        
+    </table>
+    <div class="d-flex">
+        <div>
+
+            <input type="number" asp-for="Amount" readonly/>
+        </div>
+        <div>
+
+            <input type="number" asp-for="TaxableAmount" readonly/>
+        </div>
+        <div>
+
+            <input type="number" asp-for="TaxAmount" readonly/>
+        </div>
+        <div>
+
+            <input type="number" readonly/>
+        </div>
+    </div>
+    <div>
+        <label asp-for="Remark"></label>
+        <input asp-for="Remark"/>
+    </div>
+    
+</form>
+
