@@ -32,7 +32,13 @@ namespace InventoryMgmtSystem.Controllers
                 Value = U.Id.ToString(),
                 Text = U.ShortName,
             }).ToListAsync();
+            var categorys  = await _context.Categories.Select(U => new SelectListItem
+            {
+                Value = U.Id.ToString(),
+                Text = U.Name,
+            }).ToListAsync();
             var vm = new ProductVm();
+            vm.Categories = categorys;
             vm.Units = units;
             return View(vm);
         }
@@ -51,8 +57,11 @@ namespace InventoryMgmtSystem.Controllers
                 {
                     Id = Guid.NewGuid(),
                     Name = vm.Name,
+                    CategoryId = vm.CategoryId,
                     Description = vm.Description,
-                    UnitId = vm.UnitId
+                    UnitId = vm.UnitId,
+                    Code = vm.Code,
+                    CostPrice = vm.CostPrice,
                 };
 
                 _context.Products.Add(product);

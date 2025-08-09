@@ -12,4 +12,5 @@ public class StockMovementDto
     public decimal Quantity { get; set; }
     public decimal Rate { get; set; }
     public Stock Stock { get; set; }
+    public decimal VatPer { get; set; }
 }
