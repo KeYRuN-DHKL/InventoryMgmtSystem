@@ -3,6 +3,7 @@ using System;
 using InventoryMgmtSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InventoryMgmtSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250808142832_addedpuchaseandstockMovement")]
+    partial class addedpuchaseandstockMovement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,41 +84,6 @@ namespace InventoryMgmtSystem.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("InventoryMgmtSystem.Entity.Purchase", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("InvoiceNo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Remark")
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("StakeHolderId")
-                        .HasColumnType("uuid");
-
-                    b.Property<decimal>("TaxAmount")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("TaxableAmount")
-                        .HasColumnType("numeric");
-
-                    b.Property<DateOnly>("Tdate")
-                        .HasColumnType("date");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StakeHolderId");
-
-                    b.ToTable("Purchases");
-                });
-
             modelBuilder.Entity("InventoryMgmtSystem.Entity.StakeHolder", b =>
                 {
                     b.Property<Guid>("ID")
@@ -149,37 +117,6 @@ namespace InventoryMgmtSystem.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("StakeHolders");
-                });
-
-            modelBuilder.Entity("InventoryMgmtSystem.Entity.StockMovement", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uuid");
-
-                    b.Property<decimal>("Quantity")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal>("Rate")
-                        .HasColumnType("numeric");
-
-                    b.Property<int>("Stock")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("TypeId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("StockMovements");
                 });
 
             modelBuilder.Entity("InventoryMgmtSystem.Entity.Unit", b =>
@@ -227,28 +164,6 @@ namespace InventoryMgmtSystem.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Unit");
-                });
-
-            modelBuilder.Entity("InventoryMgmtSystem.Entity.Purchase", b =>
-                {
-                    b.HasOne("InventoryMgmtSystem.Entity.StakeHolder", "StakeHolder")
-                        .WithMany()
-                        .HasForeignKey("StakeHolderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("StakeHolder");
-                });
-
-            modelBuilder.Entity("InventoryMgmtSystem.Entity.StockMovement", b =>
-                {
-                    b.HasOne("InventoryMgmtSystem.Entity.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }
