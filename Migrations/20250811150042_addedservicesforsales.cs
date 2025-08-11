@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace InventoryMgmtSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class initialcreate : Migration
+    public partial class addedservicesforsales : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -146,6 +146,7 @@ namespace InventoryMgmtSystem.Migrations
                     Type = table.Column<int>(type: "integer", nullable: false),
                     Quantity = table.Column<decimal>(type: "numeric", nullable: false),
                     Rate = table.Column<decimal>(type: "numeric", nullable: false),
+                    VatPer = table.Column<decimal>(type: "numeric", nullable: false),
                     Stock = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace InventoryMgmtSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250808144124_initial create")]
-    partial class initialcreate
+    [Migration("20250811150042_addedservicesforsales")]
+    partial class addedservicesforsales
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -212,6 +212,9 @@ namespace InventoryMgmtSystem.Migrations
 
                     b.Property<Guid>("TypeId")
                         .HasColumnType("uuid");
+
+                    b.Property<decimal>("VatPer")
+                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
