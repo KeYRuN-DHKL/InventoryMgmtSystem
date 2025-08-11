@@ -1,0 +1,9 @@
+﻿using InventoryMgmtSystem.Dto;
+using InventoryMgmtSystem.Entity;
+
+namespace InventoryMgmtSystem.Services.Interfaces;
+
+public interface IPurchaseService
+{
+    Task<Purchase> Create(PurchaseDto dto);
+}

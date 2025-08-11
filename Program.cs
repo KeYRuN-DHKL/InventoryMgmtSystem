@@ -1,4 +1,5 @@
 using InventoryMgmtSystem.Data;
+using InventoryMgmtSystem.Dto;
 using InventoryMgmtSystem.Repository;
 using InventoryMgmtSystem.Repository.Interface;
 using InventoryMgmtSystem.Services;
@@ -24,6 +25,10 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IStakeHolderService, StakeHolderService>();
 builder.Services.AddScoped<IStakeHolderRepository, StakeHolderRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IPurchaseService, PurchaseService>();
+builder.Services.AddScoped<IStockMovementService, StockMovementService>();
+
 
 var app = builder.Build();
 
@@ -44,6 +49,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=StakeHolder}/{action=Index}/{id?}");
+    pattern: "{controller=Purchase}/{action=Create}/{id?}");
 
 app.Run();

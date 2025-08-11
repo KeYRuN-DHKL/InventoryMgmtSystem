@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 namespace InventoryMgmtSystem.Repository.Interface;
 
-public class IProductRepository
+public interface IProductRepository
 {
-    
+    Task<List<SelectListItem>> GetProductList();
 }

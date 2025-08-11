@@ -1,4 +1,5 @@
 using InventoryMgmtSystem.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InventoryMgmtSystem.Repository.Interface
 {
@@ -6,5 +7,6 @@ namespace InventoryMgmtSystem.Repository.Interface
     {
         Task<List<StakeHolderVm>> GetAllAsync();
         Task<StakeHolderVm?> GetByIdAsync(Guid id);
+        Task<List<SelectListItem>> GetStakeHolderList();
     }
 }

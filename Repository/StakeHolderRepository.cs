@@ -1,6 +1,7 @@
 using InventoryMgmtSystem.Data;
 using InventoryMgmtSystem.Models;
 using InventoryMgmtSystem.Repository.Interface;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryMgmtSystem.Repository;
@@ -43,5 +44,14 @@ public class StakeHolderRepository:IStakeHolderRepository
                 Vat = s.Vat,
                 Type = s.Type
             }).FirstOrDefaultAsync();
+    }
+
+    public async Task<List<SelectListItem>> GetStakeHolderList()
+    {
+        return await _context.StakeHolders.Select(s => new SelectListItem
+        {
+            Value = s.ID.ToString(),
+            Text = s.Name
+        }).ToListAsync();
     }
 }

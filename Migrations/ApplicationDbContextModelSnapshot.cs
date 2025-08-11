@@ -115,7 +115,42 @@ namespace InventoryMgmtSystem.Migrations
 
                     b.ToTable("Purchases");
                 });
+            
+            modelBuilder.Entity("InventoryMgmtSystem.Entity.Sale", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
 
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("InvoiceNo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Remark")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("StakeHolderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal>("TaxAmount")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("TaxableAmount")
+                        .HasColumnType("numeric");
+
+                    b.Property<DateOnly>("Tdate")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StakeHolderId");
+
+                    b.ToTable("Sales");
+                }); 
+            
             modelBuilder.Entity("InventoryMgmtSystem.Entity.StakeHolder", b =>
                 {
                     b.Property<Guid>("ID")
@@ -174,6 +209,10 @@ namespace InventoryMgmtSystem.Migrations
 
                     b.Property<Guid>("TypeId")
                         .HasColumnType("uuid");
+
+        b.Property<decimal>("VatPer")
+                        .HasColumnType("numeric");
+
 
                     b.HasKey("Id");
 
@@ -240,6 +279,18 @@ namespace InventoryMgmtSystem.Migrations
                     b.Navigation("StakeHolder");
                 });
 
+            modelBuilder.Entity("InventoryMgmtSystem.Entity.Sale", b =>
+                {
+                    b.HasOne("InventoryMgmtSystem.Entity.StakeHolder", "StakeHolder")
+                        .WithMany()
+                        .HasForeignKey("StakeHolderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("StakeHolder");
+                });
+
+
             modelBuilder.Entity("InventoryMgmtSystem.Entity.StockMovement", b =>
                 {
                     b.HasOne("InventoryMgmtSystem.Entity.Product", "Product")
@@ -250,7 +301,6 @@ namespace InventoryMgmtSystem.Migrations
 
                     b.Navigation("Product");
                 });
-#pragma warning restore 612, 618
         }
     }
 }

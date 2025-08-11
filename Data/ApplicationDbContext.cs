@@ -13,4 +13,6 @@ public class ApplicationDbContext:DbContext
     public DbSet<Purchase> Purchases { get; set; }
     public DbSet<StockMovement> StockMovements { get; set; }
 
+    public DbSet<Sale> Sales { get; set; } 
+
 }
